@@ -9,7 +9,7 @@ if __name__ == '__main__':
 
     screen = Screen()
     screen.setup(width=600, height=600)
-    screen.bgpic("/Users/metinkagit/PycharmProjects/snake_game/art/DarkGrass.png")
+    screen.bgpic("art/DarkGrass.png")
     screen.title(f"Snake Game")
     screen.tracer(0)
 
@@ -36,14 +36,13 @@ if __name__ == '__main__':
 
         # Detect collision with wall.
         if snake.head.xcor() > 280 or snake.head.xcor() < -280 or snake.head.ycor() > 280 or snake.head.ycor() < -280:
-            game_is_on = False
-            scoreboard.game_over()
+            scoreboard.reset()
+            snake.reset()
 
         # Detect collision with segments.
         for segment in snake.segments[1:]:
             if snake.head.distance(segment) < 10:
-                game_is_on = False
-                scoreboard.game_over()
+                scoreboard.reset()
+                snake.reset()
 
     screen.exitonclick()
-
